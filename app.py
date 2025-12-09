@@ -22,25 +22,10 @@ st.set_page_config(
 @st.cache_resource
 def load_artifacts():
     model = joblib.load("xgboost_diabetes_model.pkl")      # best_xgb
-    preprocessor = joblib.load("preprocessor.pkl")         # ColumnTransformer
+    preprocessor = joblib.load("preprocessor.pkl")        # ColumnTransformer
     return model, preprocessor
 
 model, preprocessor = load_artifacts()
-
-# Feature lists (same as training)
-NUM_COLS = [
-    "age",
-    "hypertension",
-    "heart_disease",
-    "bmi",
-    "HbA1c_level",
-    "blood_glucose_level",
-]
-
-CAT_COLS = [
-    "gender",
-    "smoking_history",
-]
 
 # =========================
 # SIDEBAR
@@ -109,7 +94,6 @@ with st.form("patient_form"):
 # PREDICTION
 # =========================
 if submitted:
-    # Prepare single-row dataframe
     input_dict = {
         "age": age,
         "hypertension": 1 if "Yes" in hypertension else 0,
@@ -123,14 +107,11 @@ if submitted:
 
     input_df = pd.DataFrame([input_dict])
 
-    # Preprocess
     X_proc = preprocessor.transform(input_df)
 
-    # Predict
     prob = float(model.predict_proba(X_proc)[0, 1])
     pred = int(model.predict(X_proc)[0])
 
-    # Risk label
     if prob < 0.20:
         risk_label = "Low"
         risk_color = "green"
@@ -149,27 +130,18 @@ if submitted:
     c1, c2, c3 = st.columns(3)
 
     with c1:
-        st.metric(
-            "Diabetes Probability",
-            f"{prob*100:.1f} %",
-        )
+        st.metric("Diabetes Probability", f"{prob*100:.1f} %")
 
     with c2:
-        st.metric(
-            "Risk Category",
-            f"{risk_label}",
-        )
+        st.metric("Risk Category", f"{risk_label}")
 
     with c3:
-        st.metric(
-            "Model Decision",
-            "Diabetic (1)" if pred == 1 else "Non-Diabetic (0)",
-        )
+        st.metric("Model Decision", "Diabetic (1)" if pred == 1 else "Non-Diabetic (0)")
 
     # =========================
     # NICE GAUGE PLOT
     # =========================
-    st.markdown("Risk Gauge")
+    st.markdown("## 📊 Risk Gauge")
 
     fig_gauge = go.Figure(
         go.Indicator(
@@ -184,11 +156,6 @@ if submitted:
                     {"range": [20, 50], "color": "#fff7d1"},
                     {"range": [50, 100], "color": "#ffe0e0"},
                 ],
-                "threshold": {
-                    "line": {"color": "black", "width": 3},
-                    "thickness": 0.8,
-                    "value": prob * 100,
-                },
             },
             title={"text": "Estimated Diabetes Risk"},
         )
@@ -199,7 +166,7 @@ if submitted:
     # =========================
     # FEATURE SNAPSHOT
     # =========================
-    st.markdown("Input Feature Snapshot")
+    st.markdown("## 📌 Input Feature Snapshot")
 
     feat_df = pd.DataFrame(
         {
@@ -218,17 +185,14 @@ if submitted:
             )
         ]
     )
-    fig_bar.update_layout(
-        yaxis_title="Value",
-        template="simple_white",
-    )
+    fig_bar.update_layout(yaxis_title="Value", template="simple_white")
 
     st.plotly_chart(fig_bar, use_container_width=True)
 
     # =========================
     # RAW INPUT TABLE
     # =========================
-    with st.expander("🔎 See Raw Input Data (for debugging)"):
+    with st.expander("🔎 See Raw Input Data"):
         st.write(input_df)
 
 else:
@@ -239,7 +203,8 @@ else:
 # =========================
 st.markdown("---")
 st.caption(
-    "Disclaimer: This app is for educational and demo purposes only and does not replace professional medical advice."
+    "⚠ Disclaimer: This app is for educational and demo purposes only and does not replace professional medical advice."
 )
+
 
 
