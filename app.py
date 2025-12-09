@@ -74,7 +74,7 @@ st.markdown("---")
 # =========================
 # INPUT FORM
 # =========================
-st.subheader("1️⃣ Enter Patient Details")
+st.subheader("1️Enter Patient Details")
 
 with st.form("patient_form"):
     col1, col2, col3 = st.columns(3)
@@ -144,7 +144,7 @@ if submitted:
     # =========================
     # RESULT CARDS
     # =========================
-    st.subheader("2️⃣ Prediction Summary")
+    st.subheader("Prediction Summary")
 
     c1, c2, c3 = st.columns(3)
 
@@ -169,7 +169,7 @@ if submitted:
     # =========================
     # NICE GAUGE PLOT
     # =========================
-    st.markdown("### 3️⃣ Risk Gauge")
+    st.markdown("###Risk Gauge")
 
     fig_gauge = go.Figure(
         go.Indicator(
@@ -199,7 +199,7 @@ if submitted:
     # =========================
     # FEATURE SNAPSHOT
     # =========================
-    st.markdown("### 4️⃣ Input Feature Snapshot")
+    st.markdown("###Input Feature Snapshot")
 
     feat_df = pd.DataFrame(
         {
@@ -241,3 +241,4 @@ st.markdown("---")
 st.caption(
     "Disclaimer: This app is for educational and demo purposes only and does not replace professional medical advice."
 )
+
