@@ -153,3 +153,24 @@ Features of the web app:
 - Abdul Qadir 
 - BS Applied AI & Data Science 
 - Healthcare ML | Data Science | Explainable AI
+---
+## 🔗 Connect With Me & Live Projects
+
+### 👨‍💻 GitHub  
+[![GitHub](https://img.shields.io/badge/GitHub-Abdulqadir05-181717?style=for-the-badge&logo=github)](https://github.com/Abdulqadir05)
+
+---
+
+### 💼 LinkedIn  
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Abdul%20Qadir-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/abdul-qadir-533827318/)
+
+---
+
+### 🚀 Live Streamlit App  
+[![Streamlit App](https://img.shields.io/badge/Streamlit-Live%20App-FF4B4B?style=for-the-badge&logo=streamlit)](https://heart-disease-prediction-e2e-ml-m2yc39pa2ywrjt9fe7zhsy.streamlit.app/)
+
+---
+
+⭐ If you found this project useful, don’t forget to **star the repository!**
+
+
