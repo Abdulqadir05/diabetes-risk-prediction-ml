@@ -150,6 +150,6 @@ Features of the web app:
 ---
 ## 👨‍💻 Author
 
-- Abdul Qadir \
-- BS Applied AI & Data Science \
+- Abdul Qadir 
+- BS Applied AI & Data Science 
 - Healthcare ML | Data Science | Explainable AI
